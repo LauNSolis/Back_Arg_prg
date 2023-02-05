@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class Personacontroller {
     @Autowired IPersonaservice ipersonaservice;
 
-    @GetMapping ("personas/traer")
+    @GetMapping ("persona/traer")
     public List<Persona> getPersona(){
     return ipersonaservice.getPersona();
     }
     
-    @PostMapping("personas/crear")
+    @PostMapping("persona/crear")
     public String createPersona(@RequestBody Persona persona) {
     ipersonaservice.savePersona(persona);
     return "La persona fue creada de manera sastifactoria";
@@ -44,5 +44,10 @@ public class Personacontroller {
     
         ipersonaservice.savePersona(persona);
         return persona;
+    }
+    
+    @GetMapping("persona/traer/perfil")
+    public Persona findPersona() {
+        return ipersonaservice.findPersona((long)1);
     }
 }
