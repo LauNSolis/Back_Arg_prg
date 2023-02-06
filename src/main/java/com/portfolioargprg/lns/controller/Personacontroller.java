@@ -48,6 +48,6 @@ public class Personacontroller {
     
     @GetMapping("persona/traer/perfil")
     public Persona findPersona() {
-        return ipersonaservice.findPersona((long)1);
+        return ipersonaservice.findPersona((long)3);
     }
 }
