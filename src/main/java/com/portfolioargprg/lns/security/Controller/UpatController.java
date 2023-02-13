@@ -10,6 +10,7 @@ import com.portfolioargprg.lns.security.enouns.rolname;
 import com.portfolioargprg.lns.security.entity.User;
 import com.portfolioargprg.lns.security.entity.role;
 import jakarta.validation.Valid;
+import java.util.HashSet;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -55,7 +56,7 @@ public class UpatController {
     
          User usuario = new User(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(), passwordEncoder.encode(nuevoUsuario.getPassword()));
          
-         Set<role> roles = new HAshSet<>();
+         Set<role> roles = new HashSet<>();
          roles.add(roleService.getByRolNombre(rolname.ROLE_USER).get());
          
          if(nuevoUsuario.getRoles().contains("admin"))roles.add(roleService.getByRolNombre(rolname.ROLE_USER).get());
