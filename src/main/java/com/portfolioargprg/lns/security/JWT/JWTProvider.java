@@ -19,9 +19,9 @@ import org.springframework.stereotype.Component;
 public class JWTProvider {
     private final static Logger logger = LoggerFactory.getLogger(JWTProvider.class);
     
-    @Value("$jwt.secret")
+    @Value("${jwt.secret}")
     private String secret;
-    @Value("$jwt.expiration")
+    @Value("${jwt.expiration}")
     private int expiration;
     
     public String generateToken(Authentication authentication) {
