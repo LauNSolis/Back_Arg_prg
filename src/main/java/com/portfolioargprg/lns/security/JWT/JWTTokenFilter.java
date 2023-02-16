@@ -29,8 +29,9 @@ public class JWTTokenFilter extends OncePerRequestFilter{
             if(token != null && jwtProvider.validateToken(token)) {
                String nombredeUsuario = jwtProvider.getNombredeUsuarioFromTocken(token);
                UserDetails userDetails =  userDetailsImpl.loadUserByUsername(nombredeUsuario);
-               UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
-               SecurityContextHolder.getContext().setAuthentication(upat);
+               UsernamePasswordAuthenticationToken auth;
+                auth = new UsernamePasswordAuthenticationToken(userDetails,null, userDetails.getAuthorities());
+               SecurityContextHolder.getContext().setAuthentication(auth);
             } 
         } catch (Exception e) {
                     logger.error("Falló el método doFilterInternal");

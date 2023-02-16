@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/upat")
+@RequestMapping("/auth")
 @CrossOrigin
 public class UpatController {
     @Autowired
