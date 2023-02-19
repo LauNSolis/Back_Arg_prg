@@ -9,23 +9,30 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Data;
 
 @Entity
-public class User {
+@Table(name = "user")
+@Data public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", unique = true)
     private int id;
     @NotNull
+    @Column(name = "nombre")
     private String nombre;
     @NotNull
-    @Column(unique = true)
+    @Column(unique = true, name = "nombrede_usuario")
     private String nombredeUsuario;
     @NotNull
+    @Column(name = "email")
     private String email;
     @NotNull
+    @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
@@ -34,7 +41,7 @@ public class User {
 
     public User() {
     }
-
+    
     public User(String nombre, String nombredeUsuario, String email, String password) {
         this.nombre = nombre;
         this.nombredeUsuario = nombredeUsuario;

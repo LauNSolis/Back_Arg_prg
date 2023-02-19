@@ -23,10 +23,12 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/auth")
@@ -43,8 +45,11 @@ public class UpatController {
     @Autowired
     JWTProvider jwtProvider;
     
+   
+
+     
     @PostMapping("/nuevo")
-    public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResults){
+    public ResponseEntity<?>  nuevo(@ModelAttribute(name = "User") @Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResults){
         if(bindingResults.hasErrors())
             return new ResponseEntity(new Msj ("No se acepta, verifique datos colocados"), HttpStatus.BAD_REQUEST); 
     
@@ -66,7 +71,7 @@ public class UpatController {
          return new ResponseEntity(new Msj("El usuario ha sido guardado"), HttpStatus.CREATED);
     } 
     @PostMapping("/login")
-    public ResponseEntity<JwtDTO> login (@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
+    public ResponseEntity<JwtDTO> login (@ModelAttribute(name = "User") @Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult) {
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Msj("Hubo un error"), HttpStatus.BAD_REQUEST);
         
