@@ -32,9 +32,9 @@ import lombok.Data;
     @Column(name = "email")
     private String email;
     @NotNull
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
-
+    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name ="rol_id"))
     private Set<role> roles = new HashSet<>();
@@ -96,5 +96,4 @@ import lombok.Data;
     public void setRoles(Set<role> roles) {
         this.roles = roles;
     }
-    
 }

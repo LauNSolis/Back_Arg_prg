@@ -5,6 +5,7 @@ import com.portfolioargprg.lns.entity.Persona;
 import com.portfolioargprg.lns.interface_.IPersonaservice;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,18 +24,21 @@ public class Personacontroller {
     return ipersonaservice.getPersona();
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("persona/crear")
     public String createPersona(@RequestBody Persona persona) {
     ipersonaservice.savePersona(persona);
     return "La persona fue creada de manera sastifactoria";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("persona/eliminar/{id}")
     public String deletePersona(@PathVariable Long id) {
     ipersonaservice.deletePersona(id);
     return "La persona fue eliminda de manera sastifactoria";
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("persona/modificar/{id}")
     public Persona editPersona(@PathVariable Long id, @RequestParam("nombre") String nuevoNombre, @RequestParam("apellido") String nuevoApellido, @RequestParam("img") String nuevoImg) {
         Persona persona = ipersonaservice.findPersona(id);
@@ -46,6 +50,7 @@ public class Personacontroller {
         return persona;
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("persona/traer/perfil")
     public Persona findPersona() {
         return ipersonaservice.findPersona((long)3);

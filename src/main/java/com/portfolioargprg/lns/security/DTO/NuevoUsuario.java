@@ -2,8 +2,16 @@ package com.portfolioargprg.lns.security.DTO;
 
 import java.util.HashSet;
 import java.util.Set;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-public class NuevoUsuario {
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+ public class NuevoUsuario {
 
     private String nombre;
     private String nombreUsuario;
